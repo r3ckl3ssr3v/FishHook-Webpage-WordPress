@@ -1,1 +1,346 @@
-!function(){"use strict";function c(t,r){var n=new PerformanceObserver(function(t){for(var n=t.getEntries(),e=0;e<n.length;e++)r(n[e])});return n.observe({type:t,buffered:!0}),function(){n&&(n.disconnect(),n=null)}}var u,f,d,m,s;function v(){u&&u()}function h(){f&&f()}function p(){d&&d()}function l(t,n){for(var e=t||{},r=0;r<n.length;r++)e=void 0===e?e:e[n[r]];return e}function e(t){var n;if(t)try{n=function(t){var n,e,r={};for(e in t||{})"string"==typeof t[e]&&(r[e]=t[e]);return n=Object.keys(r).length?JSON.stringify(r):n}(JSON.parse(t))}catch(t){}return n}function r(t,n,e){return l(n.t,["dataset",t])||e}function w(t,n){t=r(t,n,"")||[];return"string"==typeof t?t.split(","):t}var o={},a={};function i(n,e,t){return t.some(function(t){return 0===n.indexOf(t)||0===e.indexOf(t)})}function _(e,r){return function(t){var n=t.name.replace(/^\d/,"_").replace(/\W/g,"_");"mark"===t.entryType?i(n,t.name,r.o)&&(o[n]=Math.round(t.startTime)||0):i(n,t.name,r.i)&&(a[n]=Math.round(t.duration)||0),n=e,Object.keys(o).length&&(n.custom_marks=JSON.stringify(o)),Object.keys(a).length&&(n.custom_measures=JSON.stringify(a))}}function M(){m&&m(),s&&s()}function t(t,n){var e=t;if(window.LayoutShift)try{var r=0;u=c("layout-shift",function(t){r+=t.hadRecentInput?0:t.value,e.cumulative_layout_shift=Math.round(1e3*r)/1e3}),e.cumulative_layout_shift=Math.round(1e3*r)/1e3}catch(t){v()}var o=t;if(window.LargestContentfulPaint)try{f=c("largest-contentful-paint",function(t){o.largest_contentful_paint=Math.round(t.startTime)})}catch(t){h()}var a=t;if(window.PerformanceElementTiming)try{var i=document.querySelector("[data-bilmur-mie]");i&&i.hasAttribute("elementtiming")&&(d=c("element",function(t){t.element===i&&(a.mie_renderTime=Math.round(t.renderTime),p())}))}catch(t){p()}if(window.PerformanceMeasure&&window.PerformanceMark){n.i=w("customMeasuresPrefixes",n),n.o=w("customMarksPrefixes",n);t=_(t,n);try{m=c("mark",t),s=c("measure",t)}catch(t){M()}}}function b(t,n){t.provider=r("provider",n),t.service=r("service",n),t.custom_properties=e(l(n.t,["dataset","customproperties"]))}function g(t){return 0<t||0===t}function y(n){var t,e,r=l(performance,["timing"])||{};r.navigationStart&&(e=0===(t=(t=performance.getEntriesByType("navigation"))&&t[0]?t[0]:{}).startTime?2:1,["unloadEventStart","unloadEventEnd","redirectStart","redirectEnd","fetchStart","domainLookupStart","domainLookupEnd","connectStart","connectEnd","secureConnectionStart","requestStart","responseStart","responseEnd","domLoading","domInteractive","domContentLoadedEventStart","domContentLoadedEventEnd","domComplete","loadEventStart","loadEventEnd"].forEach(function(t){n["nt_"+t]="number"==typeof r[t=t]&&"number"==typeof r.navigationStart&&!(r[t]<=0||r.navigationStart<=0)&&0<=(t=r[t]-r.navigationStart)?t:void 0}),2==e&&"number"==typeof t.secureConnectionStart&&0<t.secureConnectionStart&&(n.nt_secureConnectionStart=Math.floor(t.secureConnectionStart)),n.nt_redirectCount=t.redirectCount,n.nt_nextHopProtocol=t.nextHopProtocol,n.nt_api_level=e)}function E(n,t){function e(t,n){var e;n.u+=t.decodedBodySize||0,"cache"===(e=t).deliveryType||0===e.duration||0<e.encodedBodySize&&0<e.transferSize&&e.transferSize<e.encodedBodySize||!(0<e.transferSize)&&(0<e.decodedBodySize||e.duration<30)?n.m+=t.decodedBodySize||0:n.v+=t.transferSize||0}function r(t){n[t.h+"_size"]=t.u,n[t.h+"_transferred"]=t.v,0<t.u&&(n[t.h+"_cache_percent"]=Math.floor(t.m/t.u*100))}if(n.nt_domContentLoadedEventStart){for(var o=performance.getEntriesByType("resource")||[],a={h:"resource",v:0,u:0,m:0},i={h:"js",v:0,u:0,m:0},c={h:"blocking",v:0,u:0,m:0},u=0;u<o.length;u++)o[u].responseEnd<n.nt_domContentLoadedEventStart&&(e(o[u],a),"script"===o[u].initiatorType&&e(o[u],i),"blocking"===o[u].renderBlockingStatus)&&e(o[u],c);r(a),r(i),r(c),t.p&&(n.last_resource_end=o.reduce(function(t,n){return Math.round(Math.max(t,n.responseEnd))},0))}}function q(t,n){var e=t;try{var r=0;document.createNodeIterator(document,128,function(t){return-1<(t.nodeValue||"").indexOf("served from batcache in")?1:2}).nextNode()&&(r=1),e.batcache_hit=r}catch(t){}b(t,n),e=t,r=l(navigator,["connection"])||{},e.effective_connection_type=r.effectiveType,g(r.rtt)&&(e.rtt=r.rtt),g(r.downlink)&&(e.downlink=Math.round(1e3*r.downlink)),(e=t).host_name=l(location,["hostname"]),e.url_path=l(location,["pathname"]),y(t);for(var o=t,a=performance.getEntriesByType("paint")||[],i=0;i<a.length;i++)"first-paint"===a[i].name&&(o.start_render=Math.round(a[i].startTime)),"first-contentful-paint"===a[i].name&&(o.first_contentful_paint=Math.round(a[i].startTime));E(t,n)}var n=2e3;var S,O=!1,k={};function x(t){(t=t||{}).l&&(O=!0),v(),h(),p(),M(),O||"loading"===document.readyState||(O=!0,q(k,t),S(k))}var L=function(t){var n,e="";for(n in t)void 0!==t[n]&&(e+="&"+n+"="+encodeURIComponent(t[n]));e&&((new Image).src="https://pixel.wp.com/boom.gif?bilmur=1"+e)};if(window.performance&&window.performance.getEntriesByType){S=L;var C,j,I,J,N,L={},P=(L.t=document.getElementById("bilmur")||{},"true"===r("allowIframe",L));try{if(window.self!==window.top&&!P)return}catch(t){if(!P)return}t(k,L),C=x,j=L,"hidden"===document.visibilityState?(j.l=!0,C(j)):(I=function(){"hidden"===document.visibilityState&&(document.removeEventListener("visibilitychange",I),j.l=!1,C(j))},document.addEventListener("visibilitychange",I)),J=x,N=L,"complete"===document.readyState?setTimeout(T,n):addEventListener("load",function(){setTimeout(T,n)})}function T(){var t=performance.getEntriesByType("resource").reduce(function(t,n){return Math.max(t,n.responseEnd)},0),t=Math.floor(performance.now())-Math.floor(t);if(n<t)return N.p=!0,J(N);setTimeout(T,.75*n<=t?.05*n:.25*n)}}();
+(function() {
+    "use strict";
+
+    function observePerformance(type, callback) {
+        var observer = new PerformanceObserver(function(list) {
+            var entries = list.getEntries();
+            for (var i = 0; i < entries.length; i++) {
+                callback(entries[i]);
+            }
+        });
+        observer.observe({ type: type, buffered: true });
+        return function() {
+            if (observer) {
+                observer.disconnect();
+                observer = null;
+            }
+        };
+    }
+
+    var disconnectLayoutShiftObserver, disconnectLCPObserver, disconnectElementTimingObserver, disconnectMarkObserver, disconnectMeasureObserver;
+
+    function cleanup() {
+        disconnectLayoutShiftObserver && disconnectLayoutShiftObserver();
+        disconnectLCPObserver && disconnectLCPObserver();
+        disconnectElementTimingObserver && disconnectElementTimingObserver();
+        disconnectMarkObserver && disconnectMarkObserver();
+        disconnectMeasureObserver && disconnectMeasureObserver();
+    }
+
+    function getNestedProperty(obj, keys) {
+        for (var i = 0; i < keys.length; i++) {
+            if (obj === undefined) return obj;
+            obj = obj[keys[i]];
+        }
+        return obj;
+    }
+
+    function parseCustomProperties(jsonString) {
+        var result;
+        if (jsonString) {
+            try {
+                var parsed = JSON.parse(jsonString);
+                result = JSON.stringify(Object.keys(parsed).reduce(function(acc, key) {
+                    if (typeof parsed[key] === 'string') acc[key] = parsed[key];
+                    return acc;
+                }, {}));
+            } catch (e) {}
+        }
+        return result;
+    }
+
+    function getAttributeValue(attribute, element, defaultValue) {
+        return getNestedProperty(element.t, ["dataset", attribute]) || defaultValue;
+    }
+
+    function splitString(attribute, element) {
+        var value = getAttributeValue(attribute, element, "");
+        return typeof value === 'string' ? value.split(",") : value;
+    }
+
+    var customMarks = {},
+        customMeasures = {};
+
+    function isPrefixMatch(name, prefixes) {
+        return prefixes.some(function(prefix) {
+            return name.indexOf(prefix) === 0;
+        });
+    }
+
+    function customObserverCallback(element, prefixes) {
+        return function(entry) {
+            var name = entry.name.replace(/^\d/, "_").replace(/\W/g, "_");
+            if (entry.entryType === "mark" && isPrefixMatch(name, prefixes.o)) {
+                customMarks[name] = Math.round(entry.startTime) || 0;
+            } else if (entry.entryType === "measure" && isPrefixMatch(name, prefixes.i)) {
+                customMeasures[name] = Math.round(entry.duration) || 0;
+            }
+            name = element;
+            if (Object.keys(customMarks).length) {
+                name.custom_marks = JSON.stringify(customMarks);
+            }
+            if (Object.keys(customMeasures).length) {
+                name.custom_measures = JSON.stringify(customMeasures);
+            }
+        };
+    }
+
+    function cleanupObservers() {
+        disconnectMarkObserver && disconnectMarkObserver();
+        disconnectMeasureObserver && disconnectMeasureObserver();
+    }
+
+    function setupObservers(element, prefixes) {
+        var lcpValue = 0;
+
+        if (window.LayoutShift) {
+            try {
+                disconnectLayoutShiftObserver = observePerformance("layout-shift", function(entry) {
+                    lcpValue += entry.hadRecentInput ? 0 : entry.value;
+                    element.cumulative_layout_shift = Math.round(1000 * lcpValue) / 1000;
+                });
+                element.cumulative_layout_shift = Math.round(1000 * lcpValue) / 1000;
+            } catch (e) {
+                cleanup();
+            }
+        }
+
+        if (window.LargestContentfulPaint) {
+            try {
+                disconnectLCPObserver = observePerformance("largest-contentful-paint", function(entry) {
+                    element.largest_contentful_paint = Math.round(entry.startTime);
+                });
+            } catch (e) {
+                cleanup();
+            }
+        }
+
+        if (window.PerformanceElementTiming) {
+            try {
+                var targetElement = document.querySelector("[data-bilmur-mie]");
+                if (targetElement && targetElement.hasAttribute("elementtiming")) {
+                    disconnectElementTimingObserver = observePerformance("element", function(entry) {
+                        if (entry.element === targetElement) {
+                            element.mie_renderTime = Math.round(entry.renderTime);
+                            cleanup();
+                        }
+                    });
+                }
+            } catch (e) {
+                cleanup();
+            }
+        }
+
+        if (window.PerformanceMeasure && window.PerformanceMark) {
+            prefixes.i = splitString("customMeasuresPrefixes", prefixes);
+            prefixes.o = splitString("customMarksPrefixes", prefixes);
+            var callback = customObserverCallback(element, prefixes);
+            try {
+                disconnectMarkObserver = observePerformance("mark", callback);
+                disconnectMeasureObserver = observePerformance("measure", callback);
+            } catch (e) {
+                cleanupObservers();
+            }
+        }
+    }
+
+    function setCustomProperties(element, config) {
+        element.provider = getAttributeValue("provider", config);
+        element.service = getAttributeValue("service", config);
+        element.custom_properties = parseCustomProperties(getNestedProperty(config.t, ["dataset", "customproperties"]));
+    }
+
+    function isPositive(value) {
+        return value > 0 || value === 0;
+    }
+
+    function setTimingMetrics(element) {
+        var timing = getNestedProperty(performance, ["timing"]) || {};
+        if (timing.navigationStart) {
+            var navType = performance.getEntriesByType("navigation")[0] || {};
+            var apiLevel = navType.startTime === 0 ? 2 : 1;
+            [
+                "unloadEventStart", "unloadEventEnd", "redirectStart", "redirectEnd", "fetchStart",
+                "domainLookupStart", "domainLookupEnd", "connectStart", "connectEnd", "secureConnectionStart",
+                "requestStart", "responseStart", "responseEnd", "domLoading", "domInteractive",
+                "domContentLoadedEventStart", "domContentLoadedEventEnd", "domComplete", "loadEventStart",
+                "loadEventEnd"
+            ].forEach(function(metric) {
+                element["nt_" + metric] = typeof timing[metric] === 'number' &&
+                    typeof timing.navigationStart === 'number' &&
+                    timing[metric] > 0 && timing.navigationStart > 0 &&
+                    (timing[metric] - timing.navigationStart) >= 0 ?
+                    timing[metric] - timing.navigationStart : undefined;
+            });
+            if (apiLevel === 2 && typeof navType.secureConnectionStart === 'number' && navType.secureConnectionStart > 0) {
+                element.nt_secureConnectionStart = Math.floor(navType.secureConnectionStart);
+            }
+            element.nt_redirectCount = navType.redirectCount;
+            element.nt_nextHopProtocol = navType.nextHopProtocol;
+            element.nt_api_level = apiLevel;
+        }
+    }
+
+    function setResourceMetrics(element, config) {
+        function updateResourceMetrics(entry, metrics) {
+            metrics.u += entry.decodedBodySize || 0;
+            if (entry.deliveryType === "cache" || entry.duration === 0 || (entry.encodedBodySize > 0 && entry.transferSize > 0 && entry.transferSize < entry.encodedBodySize) || !(entry.transferSize > 0) && (entry.decodedBodySize > 0 || entry.duration < 30)) {
+                metrics.m += entry.decodedBodySize || 0;
+            } else {
+                metrics.v += entry.transferSize || 0;
+            }
+        }
+
+        function setMetricValues(metrics, type) {
+            element[type + "_size"] = metrics.u;
+            element[type + "_transferred"] = metrics.v;
+            if (metrics.u > 0) {
+                element[type + "_cache_percent"] = Math.floor(metrics.m / metrics.u * 100);
+            }
+        }
+
+        if (element.nt_domContentLoadedEventStart) {
+            var resources = performance.getEntriesByType("resource") || [];
+            var resourceMetrics = { h: "resource", v: 0, u: 0, m: 0 },
+                jsMetrics = { h: "js", v: 0, u: 0, m: 0 },
+                blockingMetrics = { h: "blocking", v: 0, u: 0, m: 0 };
+
+            resources.forEach(function(resource) {
+                if (resource.responseEnd < element.nt_domContentLoadedEventStart) {
+                    updateResourceMetrics(resource, resourceMetrics);
+                    if (resource.initiatorType === "script") {
+                        updateResourceMetrics(resource, jsMetrics);
+                    }
+                    if (resource.renderBlockingStatus === "blocking") {
+                        updateResourceMetrics(resource, blockingMetrics);
+                    }
+                }
+            });
+
+            setMetricValues(resourceMetrics, "resource");
+            setMetricValues(jsMetrics, "js");
+            setMetricValues(blockingMetrics, "blocking");
+
+            if (config.p) {
+                element.last_resource_end = Math.round(resources.reduce(function(max, resource) {
+                    return Math.max(max, resource.responseEnd);
+                }, 0));
+            }
+        }
+    }
+
+    function collectMetrics(element, config) {
+        try {
+            var batcacheHit = 0;
+            document.createNodeIterator(document, NodeFilter.SHOW_COMMENT, {
+                acceptNode: function(node) {
+                    return node.nodeValue.indexOf("served from batcache in") > -1 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+                }
+            }).nextNode() && (batcacheHit = 1);
+            element.batcache_hit = batcacheHit;
+        } catch (e) {}
+
+        setCustomProperties(element, config);
+
+        var connection = getNestedProperty(navigator, ["connection"]) || {};
+        element.effective_connection_type = connection.effectiveType;
+        if (isPositive(connection.rtt)) element.rtt = connection.rtt;
+        if (isPositive(connection.downlink)) element.downlink = Math.round(1000 * connection.downlink);
+
+        element.host_name = getNestedProperty(location, ["hostname"]);
+        element.url_path = getNestedProperty(location, ["pathname"]);
+
+        setTimingMetrics(element);
+
+        var paintMetrics = performance.getEntriesByType("paint") || [];
+        paintMetrics.forEach(function(paint) {
+            if (paint.name === "first-paint") {
+                element.start_render = Math.round(paint.startTime);
+            }
+            if (paint.name === "first-contentful-paint") {
+                element.first_contentful_paint = Math.round(paint.startTime);
+            }
+        });
+
+        setResourceMetrics(element, config);
+    }
+
+    function sendMetrics(config, element) {
+        var url = "https://pixel.wp.com/boom.gif?bilmur=1";
+        for (var key in element) {
+            if (element.hasOwnProperty(key) && element[key] !== undefined) {
+                url += "&" + key + "=" + encodeURIComponent(element[key]);
+            }
+        }
+        new Image().src = url;
+    }
+
+    var isFirstLoad = false;
+    var metrics = {};
+
+    function onDocumentReady(config) {
+        if (config.l) isFirstLoad = true;
+        cleanup();
+
+        if (!isFirstLoad && document.readyState !== "loading") {
+            isFirstLoad = true;
+            collectMetrics(metrics, config);
+            sendMetrics(config, metrics);
+        }
+    }
+
+    function setupDocumentReadyListener(callback, config) {
+        if (document.readyState === "complete") {
+            setTimeout(callback, 2000);
+        } else {
+            window.addEventListener("load", function() {
+                setTimeout(callback, 2000);
+            });
+        }
+    }
+
+    function onVisibilityChange(callback, config) {
+        if (document.visibilityState === "hidden") {
+            config.l = true;
+            callback(config);
+        } else {
+            var handleVisibilityChange = function() {
+                if (document.visibilityState === "hidden") {
+                    document.removeEventListener("visibilitychange", handleVisibilityChange);
+                    config.l = false;
+                    callback(config);
+                }
+            };
+            document.addEventListener("visibilitychange", handleVisibilityChange);
+        }
+    }
+
+    if (window.performance && window.performance.getEntriesByType) {
+        var sendMetricsConfig = sendMetrics;
+        var config = { t: document.getElementById("bilmur") || {}, p: false };
+
+        setupObservers(metrics, config);
+
+        var callback = onDocumentReady.bind(null, config);
+
+        onVisibilityChange(callback, config);
+        setupDocumentReadyListener(callback, config);
+
+        var interval = function() {
+            var delay = 2000;
+            var lastResourceEnd = performance.getEntriesByType("resource").reduce(function(max, resource) {
+                return Math.max(max, resource.responseEnd);
+            }, 0);
+            var timeSinceLastResource = Math.floor(performance.now()) - Math.floor(lastResourceEnd);
+
+            if (delay < timeSinceLastResource) {
+                config.p = true;
+                callback(config);
+            } else {
+                setTimeout(interval, Math.min(0.75 * delay, 0.25 * delay));
+            }
+        };
+
+        interval();
+    }
+})();
