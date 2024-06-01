@@ -1,0 +1,18 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.wordpress.com	TRUE	/wp-content/plugins	FALSE	1999999999	wordpress	%20
+.wordpress.com	TRUE	/wp-content/plugins	FALSE	1999999999	wordpress_sec	%20
+.wordpress.com	TRUE	/wp-admin	FALSE	1999999999	wordpress	%20
+.wordpress.com	TRUE	/wp-admin	FALSE	1999999999	wordpress_sec	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wordpress_test_cookie	WP%20Cookie%20check
+.wordpress.com	TRUE	/	FALSE	1999999999	wpc_fbc	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	twostep_auth	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wordpress_logged_in	%20
+howtoputafishhookonyourhat.wordpress.com	TRUE	/	FALSE	1999999999	wp-settings-0	%20
+howtoputafishhookonyourhat.wordpress.com	TRUE	/	FALSE	1999999999	wp-settings-time-0	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wordpress	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wordpress_sec	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wp_user	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wp_pass	%20
+.wordpress.com	TRUE	/	FALSE	1999999999	wp-postpass_653166773dc88127bd3afe0b6dfe5ea7	%20
+
